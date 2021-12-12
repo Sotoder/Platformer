@@ -8,11 +8,11 @@ namespace Platformer
         public float Force;
         public float AnimationSpeed;
 
-        public PlayerModel(float speed, float force, float animationSpeed)
+        public PlayerModel(PlayerModelConfig playerConfig)
         {
-            Speed = speed;
-            Force = force;
-            AnimationSpeed = animationSpeed;
+            Speed = playerConfig.Speed;
+            Force = playerConfig.Force;
+            AnimationSpeed = playerConfig.AnimationSpeed;
         }
     }
 }

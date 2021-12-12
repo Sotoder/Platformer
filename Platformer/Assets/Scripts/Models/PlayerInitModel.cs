@@ -8,14 +8,10 @@ namespace Platformer
     {
         [SerializeField] private SpriteAnimatorConfig _playerAnimatorConfig;
         [SerializeField] private LevelObjectsView _playerView;
-        [SerializeField] private float _speed;
-        [SerializeField] private float _force;
-        [SerializeField] private float _animationSpeed;
+        [SerializeField] private PlayerModelConfig _playerModelConfig;
 
         public SpriteAnimatorConfig PlayerAnimatorConfig { get => _playerAnimatorConfig; }
         public LevelObjectsView PlayerView { get => _playerView; }
-        public float Speed { get => _speed; }
-        public float Force { get => _force; }
-        public float AnimationSpeed { get => _animationSpeed; }
+        public PlayerModelConfig PlayerModelConfig { get => _playerModelConfig; }
     }
 }

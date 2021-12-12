@@ -15,7 +15,7 @@ namespace Platformer
             _playerView = playerInitModel.PlayerView;
             _inputController = inputController;
 
-            _playerModel = new PlayerModel(playerInitModel.Speed, playerInitModel.Force, playerInitModel.AnimationSpeed);
+            _playerModel = new PlayerModel(playerInitModel.PlayerModelConfig);
 
             _moveImplementation = new MoveImplementation(_playerModel.Speed, _playerView.Rigidbody2D, _playerModel.Force);
 

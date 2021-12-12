@@ -490,9 +490,7 @@ MonoBehaviour:
   _playerInitModel:
     _playerAnimatorConfig: {fileID: 11400000, guid: 9b029053e68de9c498dc6683e3c7ac3b, type: 2}
     _playerView: {fileID: 758941226}
-    _speed: 100
-    _force: 1
-    _animationSpeed: 15
+    _playerModelConfig: {fileID: 11400000, guid: 9325d305b80a47844bd46b5debb1b09d, type: 2}
 --- !u!4 &610333419
 Transform:
   m_ObjectHideFlags: 0
