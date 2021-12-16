@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-
+﻿
 namespace Platformer
 {
     public class PlayerModel
@@ -7,6 +6,9 @@ namespace Platformer
         public float Speed;
         public float Force;
         public float AnimationSpeed;
+
+        public IState CurentState;
+        public bool IsOnGround;
 
         public PlayerModel(PlayerModelConfig playerConfig)
         {

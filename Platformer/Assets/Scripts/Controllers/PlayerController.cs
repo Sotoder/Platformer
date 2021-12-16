@@ -1,65 +1,71 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Platformer
 {
-    public class PlayerController: IUpdateble, IFixedUpdateble
+    public class PlayerController: IUpdateble, IFixedUpdateble, IDisposable
     {
-        private LevelObjectsView _playerView;
+        private PlayerView _playerView;
         private PlayerModel _playerModel;
+
         private SpriteAnimatorController _playerAnimatorController;
+        private PlayerStateController _playerStateController;
+        private PlayerGroundDetector _playerGroundDetector;
+        private PlayerViewController _playerViewController;
+
         private InputController _inputController;
         private MoveImplementation _moveImplementation;
+
 
         public PlayerController(PlayerInitModel playerInitModel, InputController inputController)
         {
             _playerView = playerInitModel.PlayerView;
-            _inputController = inputController;
-
             _playerModel = new PlayerModel(playerInitModel.PlayerModelConfig);
 
+            _playerAnimatorController = new SpriteAnimatorController(playerInitModel.PlayerAnimatorConfig);
+            _playerAnimatorController.StartAnimation(_playerView.SpriteRenderer, AnimState.Idle, true, _playerModel.AnimationSpeed);
+
+            _playerViewController = new PlayerViewController(_playerView, _playerAnimatorController);
+            _playerStateController = new PlayerStateController(_playerModel, inputController, _playerViewController);
+            _playerGroundDetector = new PlayerGroundDetector(_playerModel, _playerView);
             _moveImplementation = new MoveImplementation(_playerModel.Speed, _playerView.Rigidbody2D, _playerModel.Force);
 
-            _playerAnimatorController = new SpriteAnimatorController(playerInitModel.PlayerAnimatorConfig);
-
-            _playerAnimatorController.StartAnimation(_playerView.SpriteRenderer, AnimState.Idle, true, _playerModel.AnimationSpeed);
+            _inputController = inputController;
+            _inputController.ButtonJumpPressed += Jump;
+            _inputController.MoveButtonUp += Stop;
         }
 
         public void FixedUpdate(float fixedDeltaTime)
         {
             if(_inputController.horizontal != 0)
             {
-                CheckAndSetScale(_inputController.horizontal);
-
-                if (_playerAnimatorController.ActiveAnimation[_playerView.SpriteRenderer].Track != AnimState.Run)
-                {
-                    StartRunAnimation();
-                }
-
+                _playerViewController.CheckAndSetScale(_inputController.horizontal);
                 _moveImplementation.Move(_inputController.horizontal, fixedDeltaTime);
             }
-            else
-            {
-                _playerAnimatorController.StopAnimation(_playerView.SpriteRenderer);
-                _playerAnimatorController.StartAnimation(_playerView.SpriteRenderer, AnimState.Idle, true, _playerModel.AnimationSpeed);
-            }
-
         }
 
-        private void CheckAndSetScale(float inputValue)
+        private void Jump()
         {
-            if (_playerView.transform.localScale.x < 0 && inputValue > 0) _playerView.transform.localScale = new Vector3(1f, 1f, 1f);
-            else if (_playerView.transform.localScale.x > 0 && inputValue < 0) _playerView.transform.localScale = new Vector3(-1f, 1f, 1f);
+            if (_playerModel.CurentState.IsJump) return;
+            _moveImplementation.Jump();
         }
 
-        private void StartRunAnimation()
+        private void Stop()
         {
-            _playerAnimatorController.StopAnimation(_playerView.SpriteRenderer);
-            _playerAnimatorController.StartAnimation(_playerView.SpriteRenderer, AnimState.Run, true, _playerModel.AnimationSpeed);
+            _moveImplementation.Stop();
         }
 
         public void Update(float deltaTime)
         {
-            _playerAnimatorController.Update(deltaTime);      
+            _playerAnimatorController.Update(deltaTime);
+            _playerStateController.Update();
+            _playerGroundDetector.Update();
+        }
+
+        public void Dispose()
+        {
+            _inputController.ButtonJumpPressed -= Jump;
+            _inputController.MoveButtonUp -= Stop;
         }
     }
 }

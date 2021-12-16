@@ -7,11 +7,11 @@ namespace Platformer
     public class PlayerInitModel
     {
         [SerializeField] private SpriteAnimatorConfig _playerAnimatorConfig;
-        [SerializeField] private LevelObjectsView _playerView;
+        [SerializeField] private PlayerView _playerView;
         [SerializeField] private PlayerModelConfig _playerModelConfig;
 
         public SpriteAnimatorConfig PlayerAnimatorConfig { get => _playerAnimatorConfig; }
-        public LevelObjectsView PlayerView { get => _playerView; }
+        public PlayerView PlayerView { get => _playerView; }
         public PlayerModelConfig PlayerModelConfig { get => _playerModelConfig; }
     }
 }

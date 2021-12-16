@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Platformer
 {
-    public class LevelObjectsView : MonoBehaviour
+    public abstract class LevelObjectsView : MonoBehaviour
     {
         public SpriteRenderer SpriteRenderer;
         public Collider2D Collider2D;

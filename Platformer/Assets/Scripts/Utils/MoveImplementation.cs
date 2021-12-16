@@ -20,9 +20,21 @@ namespace Platformer
 
         public void Move(float horizontal, float fixedDeltaTime)
         {
+            var normalizeInput = horizontal > 0 ? 1 : -1;
             var speed = fixedDeltaTime * Speed;
-            _direction.Set(horizontal * speed, 0.0f, 0.0f);
-            _rigidbody.velocity = _direction * speed * _force;
+            _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
+            _direction.Set(normalizeInput * speed, 0.0f, 0.0f);
+            _rigidbody.AddForce(_direction * _force, ForceMode2D.Impulse);
+        }
+
+        public void Stop()
+        {
+            _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
+        }
+
+        internal void Jump()
+        {
+            _rigidbody.AddForce(new Vector2(0, 1) * _force, ForceMode2D.Impulse);
         }
     }
 }
