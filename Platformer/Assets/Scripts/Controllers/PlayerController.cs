@@ -26,7 +26,7 @@ namespace Platformer
             _playerAnimatorController.StartAnimation(_playerView.SpriteRenderer, AnimState.Idle, true, _playerModel.AnimationSpeed);
 
             _playerViewController = new PlayerViewController(_playerView, _playerAnimatorController);
-            _playerStateController = new PlayerStateController(_playerModel, inputController, _playerViewController);
+            _playerStateController = new PlayerStateController(_playerModel, inputController, _playerViewController, _playerView);
             _playerGroundDetector = new PlayerGroundDetector(_playerModel, _playerView);
             _moveImplementation = new MoveImplementation(_playerModel.Speed, _playerView.Rigidbody2D, _playerModel.Force);
 
@@ -46,7 +46,7 @@ namespace Platformer
 
         private void Jump()
         {
-            if (_playerModel.CurentState.IsJump) return;
+            if (!_playerModel.IsOnGround) return;
             _moveImplementation.Jump();
         }
 
@@ -60,6 +60,8 @@ namespace Platformer
             _playerAnimatorController.Update(deltaTime);
             _playerStateController.Update();
             _playerGroundDetector.Update();
+
+            Debug.Log(_playerView.Rigidbody2D.velocity.y);
         }
 
         public void Dispose()

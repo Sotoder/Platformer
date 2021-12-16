@@ -1,18 +1,18 @@
 ﻿namespace Platformer
 {
-    public class StayState : IState
+    public class FallState: IState
     {
         private bool _isStay;
         private bool _isRun;
         private bool _isJump;
         private bool _isFall;
 
-        public StayState()
+        public FallState()
         {
-            _isStay = true;
+            _isStay = false;
             _isRun = false;
             _isJump = false;
-            _isFall = false;
+            _isFall = true;
         }
 
         public bool IsStay { get => _isStay; }
@@ -22,7 +22,7 @@
 
         public void OnStateEnter(PlayerViewController playerViewController, float animationSpeed)
         {
-            playerViewController.ChangeAnimation(animationSpeed, AnimState.Idle);
+            playerViewController.ChangeAnimation(animationSpeed, AnimState.Fall);
         }
     }
 }

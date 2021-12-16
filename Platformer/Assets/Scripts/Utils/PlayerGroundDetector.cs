@@ -13,14 +13,9 @@ namespace Platformer
             _playerView = playerView;
         }
 
-        private void GroundStateUpdate()
-        {
-            _playerModel.IsOnGround = Physics2D.OverlapCircle(_playerView.GroundDetector.transform.position, _playerView.GroundDetectorRadius, _playerView.GroundMask);
-        }
-
         public void Update()
         {
-            GroundStateUpdate();
+            _playerModel.IsOnGround = Physics2D.OverlapCircle(_playerView.GroundDetector.transform.position, _playerView.GroundDetectorRadius, _playerView.GroundMask);
         }
     }
 }
