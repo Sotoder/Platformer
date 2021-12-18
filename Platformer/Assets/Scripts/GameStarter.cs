@@ -5,14 +5,14 @@ namespace Platformer
 {
     public class GameStarter : MonoBehaviour
     {
-        [SerializeField] private PlayerInitModel _playerInitModel;
+        [SerializeField] private GameInitModel _gameInitModel;
 
         private MainUpdateController _updateController;
 
         void Awake()
         {
             _updateController = new MainUpdateController();
-            new MainInitializator(_updateController, _playerInitModel);
+            new MainInitializator(_updateController, _gameInitModel);
         }
 
         void Update()

@@ -28,7 +28,7 @@ namespace Platformer
             _playerViewController = new PlayerViewController(_playerView, _playerAnimatorController);
             _playerStateController = new PlayerStateController(_playerModel, inputController, _playerViewController, _playerView);
             _playerGroundDetector = new PlayerGroundDetector(_playerModel, _playerView);
-            _moveImplementation = new MoveImplementation(_playerModel.Speed, _playerView.Rigidbody2D, _playerModel.Force);
+            _moveImplementation = new MoveImplementation(_playerModel.Speed, _playerView.Rigidbody2D, _playerModel.Force, _playerModel.JumpForce);
 
             _inputController = inputController;
             _inputController.ButtonJumpPressed += Jump;
@@ -46,8 +46,14 @@ namespace Platformer
 
         private void Jump()
         {
-            if (!_playerModel.IsOnGround) return;
+            if (!_playerModel.IsOnGround && _playerModel.CurrentCountAirJumps == 0) return;
+
             _moveImplementation.Jump();
+
+            if (!_playerModel.IsOnGround)
+            {
+                _playerModel.CurrentCountAirJumps--;
+            }
         }
 
         private void Stop()
@@ -60,6 +66,7 @@ namespace Platformer
             _playerAnimatorController.Update(deltaTime);
             _playerStateController.Update();
             _playerGroundDetector.Update();
+
 
             Debug.Log(_playerView.Rigidbody2D.velocity.y);
         }

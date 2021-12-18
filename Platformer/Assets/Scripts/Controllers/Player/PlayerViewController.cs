@@ -16,8 +16,8 @@ namespace Platformer
 
         public void CheckAndSetScale(float inputValue)
         {
-            if (_playerView.transform.localScale.x < 0 && inputValue > 0) _playerView.transform.localScale = new Vector3(1f, 1f, 1f);
-            else if (_playerView.transform.localScale.x > 0 && inputValue < 0) _playerView.transform.localScale = new Vector3(-1f, 1f, 1f);
+            if (_playerView.Transform.localScale.x < 0 && inputValue > 0) _playerView.Transform.localScale = new Vector3(1f, 1f, 1f);
+            else if (_playerView.Transform.localScale.x > 0 && inputValue < 0) _playerView.Transform.localScale = new Vector3(-1f, 1f, 1f);
         }
 
         public void ChangeAnimation(float animationSpeed, AnimState animState)
