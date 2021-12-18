@@ -1,0 +1,11 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Platformer
+{
+    [CreateAssetMenu(fileName = "SpriteAnimationConfig", menuName = "Configs/Animation", order = 1)]
+    public partial class SpriteAnimatorConfig : ScriptableObject
+    {
+        public List<SpriteSequence> SpriteSequences = new List<SpriteSequence>();
+    }
+}
