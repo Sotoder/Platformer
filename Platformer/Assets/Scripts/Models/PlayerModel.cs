@@ -9,13 +9,14 @@ namespace Platformer
         public readonly float JumpForce;
 
         public int CurrentCountAirJumps;
-        public float AnimationSpeed;
         public IState CurentState;
         public bool IsOnGround;
         public bool IsSprint;
 
         private int _maxCountAirJumps;
+        private int _coinsScore;
         public int MaxCountAirJumps { get => _maxCountAirJumps; }
+        public int CoinsScore { get => _coinsScore; }
 
         public PlayerModel(PlayerModelConfig playerConfig)
         {
@@ -23,9 +24,14 @@ namespace Platformer
             SprintModifier = playerConfig.SprintModifier;
             Force = playerConfig.Force;
             JumpForce = playerConfig.JumpForce;
-            AnimationSpeed = playerConfig.AnimationSpeed;
             _maxCountAirJumps = playerConfig.CountAirJumps;
             CurrentCountAirJumps = playerConfig.CountAirJumps;
+        }
+
+        public void AddCoinsScore()
+        {
+            _coinsScore++;
+            UnityEngine.Debug.Log(_coinsScore);
         }
     }
 }

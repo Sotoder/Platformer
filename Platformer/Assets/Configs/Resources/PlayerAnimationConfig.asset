@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd61a477de0afd34999be7fa74009477, type: 3}
   m_Name: PlayerAnimationConfig
   m_EditorClassIdentifier: 
+  AnimationSpeed: 15
   SpriteSequences:
   - Track: 0
     Sprites:

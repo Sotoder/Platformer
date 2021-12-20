@@ -10,18 +10,19 @@ namespace Platformer
         private Dictionary<SpriteRenderer, Animation> _activeAnimation = new Dictionary<SpriteRenderer, Animation>();
 
         public Dictionary<SpriteRenderer, Animation> ActiveAnimation { get => _activeAnimation; }
+        public SpriteAnimatorConfig AnimatorConfig { get => _animatorConfig; }
 
         public SpriteAnimatorController(SpriteAnimatorConfig config)
         {
             _animatorConfig = config;
         }
 
-        public void StartAnimation(SpriteRenderer spriteRenderer, AnimState track, bool loop, float speed)
+        public void StartAnimation(SpriteRenderer spriteRenderer, AnimState track, bool loop)
         {
             if(_activeAnimation.TryGetValue(spriteRenderer, out var animation))
             {
                 animation.Loop = loop;
-                animation.Speed = speed;
+                animation.Speed = _animatorConfig.AnimationSpeed;
                 animation.Sleep = false;
                 
                 if(animation.Track != track)
@@ -38,18 +39,18 @@ namespace Platformer
                     Track = track,
                     Sprites = _animatorConfig.SpriteSequences.Find(sequence => sequence.Track == track).Sprites,
                     Loop = loop,
-                    Speed = speed,
+                    Speed = _animatorConfig.AnimationSpeed,
                     Sleep = false
                 });
             }
         }
 
-        public void StartAnimation(SpriteRenderer spriteRenderer, AnimState track, bool loop, float speed, int startPosition)
+        public void StartAnimation(SpriteRenderer spriteRenderer, AnimState track, bool loop, int startPosition)
         {
             if (_activeAnimation.TryGetValue(spriteRenderer, out var animation))
             {
                 animation.Loop = loop;
-                animation.Speed = speed;
+                animation.Speed = _animatorConfig.AnimationSpeed;
                 animation.Sleep = false;
                 animation.Counter = startPosition;
 
@@ -67,7 +68,7 @@ namespace Platformer
                     Track = track,
                     Sprites = _animatorConfig.SpriteSequences.Find(sequence => sequence.Track == track).Sprites,
                     Loop = loop,
-                    Speed = speed,
+                    Speed = _animatorConfig.AnimationSpeed,
                     Sleep = false,
                     Counter = startPosition
                 });

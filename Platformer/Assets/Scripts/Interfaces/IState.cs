@@ -7,6 +7,6 @@
         public bool IsRun { get; }
         public bool IsFall { get; }
 
-        public void OnStateEnter(PlayerViewController playerViewController, float animationSpeed);
+        public void OnStateEnter(PlayerAnimationController playerViewController);
     }
 }

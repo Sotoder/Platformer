@@ -2,14 +2,14 @@
 
 namespace Platformer
 {
-    public class WaterPoolsController: IUpdateble
+    public class WaterPoolsAnimationController: IUpdateble
     {
         private SpriteAnimatorController _waterAnimatorController;
-        private List<WaterPoolObjectView> _waterPoolObjectViews = new List<WaterPoolObjectView>();
+        private List<WaterPoolObject> _waterPoolObjectViews = new List<WaterPoolObject>();
 
         private const AnimState WATER_STATE = AnimState.Idle;
 
-        public WaterPoolsController(WaterObjectsInitModel waterInitModel)
+        public WaterPoolsAnimationController(WaterObjectsInitModel waterInitModel)
         {
             _waterPoolObjectViews = waterInitModel.WaterPoolObjectViews;
             _waterAnimatorController = new SpriteAnimatorController(waterInitModel.WaterSpriteAnimatorConfig);
@@ -18,7 +18,7 @@ namespace Platformer
             {
                 for (int j = 0; j < _waterPoolObjectViews[i].WaterSpriteRenderers.Count; j++)
                 {
-                    _waterAnimatorController.StartAnimation(_waterPoolObjectViews[i].WaterSpriteRenderers[j], WATER_STATE, true, 15, j);
+                    _waterAnimatorController.StartAnimation(_waterPoolObjectViews[i].WaterSpriteRenderers[j], WATER_STATE, true, j);
                 }
             }
         }

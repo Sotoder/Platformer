@@ -5,7 +5,7 @@ namespace Platformer
     public class PlayerStateController
     {
         private PlayerModel _playerModel;
-        private PlayerViewController _playerViewController;
+        private PlayerAnimationController _playerViewController;
         private InputController _inputController;
         private PlayerView _playerView;
 
@@ -14,7 +14,7 @@ namespace Platformer
         private JumpState _jumpState;
         private FallState _fallState;
 
-        public PlayerStateController(PlayerModel playerModel, InputController inputController, PlayerViewController playerViewController, PlayerView playerView)
+        public PlayerStateController(PlayerModel playerModel, InputController inputController, PlayerAnimationController playerViewController, PlayerView playerView)
         {
             _playerModel = playerModel;
             _playerViewController = playerViewController;
@@ -36,14 +36,14 @@ namespace Platformer
                 if (_inputController.horizontal != 0)
                 {
                     if (_playerModel.CurentState == _runState) return;
-                    _runState.OnStateEnter(_playerViewController, _playerModel.AnimationSpeed);
+                    _runState.OnStateEnter(_playerViewController);
                     _playerModel.CurentState = _runState;
 
                 }
                 else if (_inputController.horizontal == 0)
                 {
                     if (_playerModel.CurentState == _stayState) return;
-                    _stayState.OnStateEnter(_playerViewController, _playerModel.AnimationSpeed);
+                    _stayState.OnStateEnter(_playerViewController);
                     _playerModel.CurentState = _stayState;
                 }
             } else
@@ -51,13 +51,13 @@ namespace Platformer
                 if(_playerView.Rigidbody2D.velocity.y > 0)
                 {
                     if (_playerModel.CurentState == _jumpState) return;
-                    _jumpState.OnStateEnter(_playerViewController, _playerModel.AnimationSpeed);
+                    _jumpState.OnStateEnter(_playerViewController);
                     _playerModel.CurentState = _jumpState;
                 } 
                 else
                 {
                     if (_playerModel.CurentState == _fallState) return;
-                    _fallState.OnStateEnter(_playerViewController, _playerModel.AnimationSpeed);
+                    _fallState.OnStateEnter(_playerViewController);
                     _playerModel.CurentState = _fallState;
                 }
             }

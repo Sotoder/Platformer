@@ -11,22 +11,23 @@ namespace Platformer
         private SpriteAnimatorController _playerAnimatorController;
         private PlayerStateController _playerStateController;
         private PlayerGroundDetector _playerGroundDetector;
-        private PlayerViewController _playerViewController;
+        private PlayerAnimationController _playerAnimationController;
 
         private InputController _inputController;
+        private TriggerController _triggerController;
         private MoveImplementation _moveImplementation;
 
 
-        public PlayerController(PlayerInitModel playerInitModel, InputController inputController)
+        public PlayerController(PlayerInitModel playerInitModel, InputController inputController, TriggerController triggerController)
         {
             _playerView = playerInitModel.PlayerView;
             _playerModel = new PlayerModel(playerInitModel.PlayerModelConfig);
 
             _playerAnimatorController = new SpriteAnimatorController(playerInitModel.PlayerAnimatorConfig);
-            _playerAnimatorController.StartAnimation(_playerView.SpriteRenderer, AnimState.Idle, true, _playerModel.AnimationSpeed);
+            _playerAnimationController = new PlayerAnimationController(_playerView, _playerAnimatorController);
+            _playerAnimationController.ChangeAnimation(AnimState.Idle);
 
-            _playerViewController = new PlayerViewController(_playerView, _playerAnimatorController);
-            _playerStateController = new PlayerStateController(_playerModel, inputController, _playerViewController, _playerView);
+            _playerStateController = new PlayerStateController(_playerModel, inputController, _playerAnimationController, _playerView);
             _playerGroundDetector = new PlayerGroundDetector(_playerModel, _playerView);
             _moveImplementation = new MoveImplementation(_playerModel.Speed, _playerView.Rigidbody2D, _playerModel.Force, _playerModel.JumpForce, _playerModel.SprintModifier);
 
@@ -35,13 +36,16 @@ namespace Platformer
             _inputController.MoveButtonUp += Stop;
             _inputController.SprintButtonDown += SprintOn;
             _inputController.SprintButtonUp += SprintOff;
+
+            _triggerController = triggerController;
+            _triggerController.GetCoin += AddScore;
         }
 
         public void FixedUpdate(float fixedDeltaTime)
         {
             if(_inputController.horizontal != 0)
             {
-                _playerViewController.CheckAndSetScale(_inputController.horizontal);
+                _playerAnimationController.CheckAndSetScale(_inputController.horizontal);
                 _moveImplementation.Move(_inputController.horizontal, fixedDeltaTime, _playerModel.IsSprint);
             }
         }
@@ -82,12 +86,18 @@ namespace Platformer
             _playerAnimatorController.ActiveAnimation[_playerView.SpriteRenderer].Speed *= _playerModel.SprintModifier;
         }
 
+        private void AddScore()
+        {
+            _playerModel.AddCoinsScore();
+        }
+
         public void Dispose()
         {
             _inputController.ButtonJumpPressed -= Jump;
             _inputController.MoveButtonUp -= Stop;
             _inputController.SprintButtonDown -= SprintOn;
             _inputController.SprintButtonUp -= SprintOff;
+            _triggerController.GetCoin -= AddScore;
         }
     }
 }

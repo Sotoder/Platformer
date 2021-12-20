@@ -8,9 +8,9 @@ namespace Platformer
     public class WaterObjectsInitModel
     {
         [SerializeField] private SpriteAnimatorConfig _waterSpriteAnimatorConfig;
-        [SerializeField] private List<WaterPoolObjectView> _waterPoolObjectViews;
+        [SerializeField] private List<WaterPoolObject> _waterPoolObjects;
 
         public SpriteAnimatorConfig WaterSpriteAnimatorConfig { get => _waterSpriteAnimatorConfig; }
-        public List<WaterPoolObjectView> WaterPoolObjectViews { get => _waterPoolObjectViews; }
+        public List<WaterPoolObject> WaterPoolObjectViews { get => _waterPoolObjects; }
     }
 }

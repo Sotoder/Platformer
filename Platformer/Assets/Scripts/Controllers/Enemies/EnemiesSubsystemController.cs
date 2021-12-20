@@ -1,10 +1,10 @@
 ﻿namespace Platformer
 {
-    internal class EnemiesController: IUpdateble
+    internal class EnemiesSubsystemController: IUpdateble
     {
         private FlyEnemiesController _flyEnemiesController;
 
-        public EnemiesController(FlyEnemiesInitModel flyEnemiesInitModel)
+        public EnemiesSubsystemController(FlyEnemiesInitModel flyEnemiesInitModel)
         {
             _flyEnemiesController = new FlyEnemiesController(flyEnemiesInitModel);
         }

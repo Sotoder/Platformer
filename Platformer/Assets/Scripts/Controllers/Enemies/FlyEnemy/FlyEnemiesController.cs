@@ -5,15 +5,14 @@ namespace Platformer
     public class FlyEnemiesController
     {
         private List<FlyEnemyController> _flyEnemyControllers = new List<FlyEnemyController>();
-        private FlyEnemiesControllerFactory _enemiesFactory;
 
         public FlyEnemiesController(FlyEnemiesInitModel flyEnemiesInitModel)
         {
-            _enemiesFactory = new FlyEnemiesControllerFactory();
+            var enemyControllersFactory = new FlyEnemiesControllerFactory();
 
             for (int i = 0; i < flyEnemiesInitModel.FlyEnemyInitModels.Count; i++)
             {
-                var flyEnemyController = _enemiesFactory.Create(flyEnemiesInitModel.FlyEnemyInitModels[i]);
+                var flyEnemyController = enemyControllersFactory.Create(flyEnemiesInitModel.FlyEnemyInitModels[i]);
                 _flyEnemyControllers.Add(flyEnemyController);
             }
         }

@@ -2,12 +2,12 @@
 
 namespace Platformer
 {
-    public class PlayerViewController
+    public class PlayerAnimationController
     {
         private PlayerView _playerView;
         private SpriteAnimatorController _playerAnimatorController;
 
-        public PlayerViewController(PlayerView playerView, SpriteAnimatorController playerAnimatorController)
+        public PlayerAnimationController(PlayerView playerView, SpriteAnimatorController playerAnimatorController)
         {
             _playerView = playerView;
             _playerAnimatorController = playerAnimatorController;
@@ -20,10 +20,10 @@ namespace Platformer
             else if (_playerView.Transform.localScale.x > 0 && inputValue < 0) _playerView.Transform.localScale = new Vector3(-1f, 1f, 1f);
         }
 
-        public void ChangeAnimation(float animationSpeed, AnimState animState)
+        public void ChangeAnimation(AnimState animState)
         {
             _playerAnimatorController.StopAnimation(_playerView.SpriteRenderer);
-            _playerAnimatorController.StartAnimation(_playerView.SpriteRenderer, animState, true, animationSpeed);
+            _playerAnimatorController.StartAnimation(_playerView.SpriteRenderer, animState, true);
         }
     }
 }
