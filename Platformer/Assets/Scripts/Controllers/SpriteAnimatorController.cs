@@ -44,6 +44,36 @@ namespace Platformer
             }
         }
 
+        public void StartAnimation(SpriteRenderer spriteRenderer, AnimState track, bool loop, float speed, int startPosition)
+        {
+            if (_activeAnimation.TryGetValue(spriteRenderer, out var animation))
+            {
+                animation.Loop = loop;
+                animation.Speed = speed;
+                animation.Sleep = false;
+                animation.Counter = startPosition;
+
+                if (animation.Track != track)
+                {
+                    animation.Track = track;
+                    animation.Sprites = _animatorConfig.SpriteSequences.Find(sequence => sequence.Track == track).Sprites;
+                    animation.Counter = startPosition;
+                }
+            }
+            else
+            {
+                _activeAnimation.Add(spriteRenderer, new Animation()
+                {
+                    Track = track,
+                    Sprites = _animatorConfig.SpriteSequences.Find(sequence => sequence.Track == track).Sprites,
+                    Loop = loop,
+                    Speed = speed,
+                    Sleep = false,
+                    Counter = startPosition
+                });
+            }
+        }
+
         public void StopAnimation(SpriteRenderer spriteRenderer)
         {
             if (_activeAnimation.ContainsKey(spriteRenderer))

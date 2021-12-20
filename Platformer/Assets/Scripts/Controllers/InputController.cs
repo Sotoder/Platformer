@@ -7,6 +7,8 @@ namespace Platformer
     {
         public event Action ButtonJumpPressed = delegate () { };
         public event Action MoveButtonUp = delegate () { };
+        public event Action SprintButtonDown = delegate () { };
+        public event Action SprintButtonUp = delegate () { };
         public float horizontal;
 
         private const string HORIZONTAL = "Horizontal";
@@ -23,6 +25,16 @@ namespace Platformer
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
             {
                 MoveButtonUp.Invoke();
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                SprintButtonDown.Invoke();
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                SprintButtonUp.Invoke();
             }
         }
     }

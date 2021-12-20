@@ -8,6 +8,7 @@ namespace Platformer
     public class PlayerModelConfig: ScriptableObject
     {
         [SerializeField] private float _speed;
+        [SerializeField] private float _sprintModifier;
         [SerializeField] private float _force;
         [SerializeField] private float _jumpForce;
         [SerializeField] private int _countAirJumps;
@@ -18,5 +19,6 @@ namespace Platformer
         public float AnimationSpeed { get => _animationSpeed; }
         public float JumpForce { get => _jumpForce; }
         public int CountAirJumps { get => _countAirJumps; }
+        public float SprintModifier { get => _sprintModifier; }
     }
 }

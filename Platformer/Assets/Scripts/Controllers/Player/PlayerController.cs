@@ -28,11 +28,13 @@ namespace Platformer
             _playerViewController = new PlayerViewController(_playerView, _playerAnimatorController);
             _playerStateController = new PlayerStateController(_playerModel, inputController, _playerViewController, _playerView);
             _playerGroundDetector = new PlayerGroundDetector(_playerModel, _playerView);
-            _moveImplementation = new MoveImplementation(_playerModel.Speed, _playerView.Rigidbody2D, _playerModel.Force, _playerModel.JumpForce);
+            _moveImplementation = new MoveImplementation(_playerModel.Speed, _playerView.Rigidbody2D, _playerModel.Force, _playerModel.JumpForce, _playerModel.SprintModifier);
 
             _inputController = inputController;
             _inputController.ButtonJumpPressed += Jump;
             _inputController.MoveButtonUp += Stop;
+            _inputController.SprintButtonDown += SprintOn;
+            _inputController.SprintButtonUp += SprintOff;
         }
 
         public void FixedUpdate(float fixedDeltaTime)
@@ -40,8 +42,15 @@ namespace Platformer
             if(_inputController.horizontal != 0)
             {
                 _playerViewController.CheckAndSetScale(_inputController.horizontal);
-                _moveImplementation.Move(_inputController.horizontal, fixedDeltaTime);
+                _moveImplementation.Move(_inputController.horizontal, fixedDeltaTime, _playerModel.IsSprint);
             }
+        }
+
+        public void Update(float deltaTime)
+        {
+            _playerAnimatorController.Update(deltaTime);
+            _playerStateController.Update();
+            _playerGroundDetector.Update();
         }
 
         private void Jump()
@@ -61,20 +70,24 @@ namespace Platformer
             _moveImplementation.Stop();
         }
 
-        public void Update(float deltaTime)
+        private void SprintOff()
         {
-            _playerAnimatorController.Update(deltaTime);
-            _playerStateController.Update();
-            _playerGroundDetector.Update();
+            _playerModel.IsSprint = false;
+            _playerAnimatorController.ActiveAnimation[_playerView.SpriteRenderer].Speed /= _playerModel.SprintModifier;
+        }
 
-
-            Debug.Log(_playerView.Rigidbody2D.velocity.y);
+        private void SprintOn()
+        {
+            _playerModel.IsSprint = true;
+            _playerAnimatorController.ActiveAnimation[_playerView.SpriteRenderer].Speed *= _playerModel.SprintModifier;
         }
 
         public void Dispose()
         {
             _inputController.ButtonJumpPressed -= Jump;
             _inputController.MoveButtonUp -= Stop;
+            _inputController.SprintButtonDown -= SprintOn;
+            _inputController.SprintButtonUp -= SprintOff;
         }
     }
 }

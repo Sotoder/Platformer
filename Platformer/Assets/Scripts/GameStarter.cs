@@ -20,6 +20,11 @@ namespace Platformer
             _updateController.Update(Time.deltaTime);
         }
 
+        private void LateUpdate()
+        {
+            _updateController.LateUpdate(Time.deltaTime);
+        }
+
         private void FixedUpdate()
         {
             _updateController.FixedUpdate(Time.fixedDeltaTime);
