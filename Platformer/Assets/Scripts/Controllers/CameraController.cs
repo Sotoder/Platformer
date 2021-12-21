@@ -21,5 +21,17 @@ namespace Platformer
 
             _cameraModel.CameraTransform.position = newPosition;  
         }
+
+        public void ChangeLevelSettings(int levelID)
+        {
+            foreach (var levelSettings in _cameraModel.LevelsSettings)
+            {
+                if (levelID == levelSettings.LevelID)
+                {
+                    _cameraModel.CurrentLevelSettings = levelSettings;
+                    return;
+                }
+            }
+        }
     }
 }
