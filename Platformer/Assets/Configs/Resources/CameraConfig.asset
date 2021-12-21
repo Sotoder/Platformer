@@ -15,4 +15,4 @@ MonoBehaviour:
   _cameraLevelSettings:
   - _levelID: 1
     _maxLeftOffset: 0
-    _maxRightOffset: 18
+    _maxRightOffset: 37
