@@ -10,7 +10,7 @@ namespace Platformer
         public event Action<int, Vector2> Teleportation = delegate (int offset, Vector2 teleportationPosition) { };
 
         private PlayerView _playerView;
-        private Dictionary<TriggeredObjectTypes, List<ITriggerObject>> _triggeredObjectsLists = new Dictionary<TriggeredObjectTypes, List<ITriggerObject>>();
+        private Dictionary<TriggerObjectTypes, List<ITriggerObject>> _triggeredObjectsLists = new Dictionary<TriggerObjectTypes, List<ITriggerObject>>();
 
         public TriggerController(PlayerView playerView)
         {
@@ -26,11 +26,11 @@ namespace Platformer
                 {
                     if (collider.gameObject.GetInstanceID() == objectsList.Value[i].InstanceID)
                     {
-                        if(objectsList.Key == TriggeredObjectTypes.Coin)
+                        if(objectsList.Key == TriggerObjectTypes.Coin)
                         {
                             GetCoin.Invoke();
                         }
-                        else if(objectsList.Key == TriggeredObjectTypes.Teleport)
+                        else if(objectsList.Key == TriggerObjectTypes.Teleport)
                         {
                             var teleportObject = objectsList.Value[i] as ITriggerTeleportObject;
                             Teleportation.Invoke(teleportObject.TeleportationOffset, teleportObject.PairObjectPosition);
@@ -41,7 +41,7 @@ namespace Platformer
             }
         }
 
-        public TriggerController AddTriggerdObjects (TriggeredObjectTypes objectType, List<ITriggerObject> gameObjects)
+        public TriggerController AddTriggerdObjects (TriggerObjectTypes objectType, List<ITriggerObject> gameObjects)
         {
             _triggeredObjectsLists.Add(objectType, gameObjects);
 

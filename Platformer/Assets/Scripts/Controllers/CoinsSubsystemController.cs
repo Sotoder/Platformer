@@ -12,7 +12,7 @@ namespace Platformer
         private CoinsSpawnController _coinsSpawnController;
 
         public List<SpriteRenderer> CoinsSpriteRenderers => _coinsAdapter.CoinsSpriteRenderers;
-        public List<ITriggerObject> TriggeredObjects => _coinsAdapter.CoinsObjects;
+        public List<ITriggerObject> TriggerObjects => _coinsAdapter.CoinsObjects;
 
         public CoinsSubsystemController(CoinsProtoModel coinsProtoModel, Transform cameraTransform, PlayerView playerView)
         {

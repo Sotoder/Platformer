@@ -16,8 +16,8 @@ namespace Platformer
             var teleportController = new TeleportsController(gameInitModel.TeleportsProtoModel);
 
             var triggerController = new TriggerController(gameInitModel.PlayerProtoModel.PlayerView)
-                                                 .AddTriggerdObjects(TriggeredObjectTypes.Coin, coinsSubsystemController.TriggeredObjects)
-                                                 .AddTriggerdObjects(TriggeredObjectTypes.Teleport, teleportController.TriggerTeleportObjects);
+                                                 .AddTriggerdObjects(TriggerObjectTypes.Coin, coinsSubsystemController.TriggerObjects)
+                                                 .AddTriggerdObjects(TriggerObjectTypes.Teleport, teleportController.TriggerTeleportObjects);
             
             var cameraController = new CameraController(gameInitModel.PlayerProtoModel.PlayerView, gameInitModel.CameraProtoModel);
             var inputController = new InputController();

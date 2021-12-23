@@ -1,6 +1,6 @@
 namespace Platformer
 {
-    public enum TriggeredObjectTypes
+    public enum TriggerObjectTypes
     {
         Coin = 1,
         Teleport = 2,
