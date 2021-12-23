@@ -11,23 +11,23 @@ namespace Platformer
         private SpriteAnimatorController _playerAnimatorController;
         private PlayerStateController _playerStateController;
         private PlayerGroundDetector _playerGroundDetector;
-        private PlayerAnimationController _playerAnimationController;
+        private PlayerViewController _playerViewController;
 
         private InputController _inputController;
         private TriggerController _triggerController;
         private MoveImplementation _moveImplementation;
 
 
-        public PlayerController(PlayerInitModel playerInitModel, InputController inputController, TriggerController triggerController)
+        public PlayerController(PlayerProtoModel playerInitModel, InputController inputController, TriggerController triggerController)
         {
             _playerView = playerInitModel.PlayerView;
             _playerModel = new PlayerModel(playerInitModel.PlayerModelConfig);
 
             _playerAnimatorController = new SpriteAnimatorController(playerInitModel.PlayerAnimatorConfig);
-            _playerAnimationController = new PlayerAnimationController(_playerView, _playerAnimatorController);
-            _playerAnimationController.ChangeAnimation(AnimState.Idle);
+            _playerViewController = new PlayerViewController(_playerView, _playerAnimatorController);
+            _playerViewController.ChangeAnimation(AnimState.Idle);
 
-            _playerStateController = new PlayerStateController(_playerModel, inputController, _playerAnimationController, _playerView);
+            _playerStateController = new PlayerStateController(_playerModel, inputController, _playerViewController, _playerView);
             _playerGroundDetector = new PlayerGroundDetector(_playerModel, _playerView);
             _moveImplementation = new MoveImplementation(_playerModel.Speed, _playerView.Rigidbody2D, _playerModel.Force, _playerModel.JumpForce, _playerModel.SprintModifier);
 
@@ -39,13 +39,14 @@ namespace Platformer
 
             _triggerController = triggerController;
             _triggerController.GetCoin += AddScore;
+            _triggerController.Teleportation += TeleportPlayer;
         }
 
         public void FixedUpdate(float fixedDeltaTime)
         {
             if(_inputController.horizontal != 0)
             {
-                _playerAnimationController.CheckAndSetScale(_inputController.horizontal);
+                _playerViewController.CheckAndSetScale(_inputController.horizontal);
                 _moveImplementation.Move(_inputController.horizontal, fixedDeltaTime, _playerModel.IsSprint);
             }
         }
@@ -89,6 +90,11 @@ namespace Platformer
         private void AddScore()
         {
             _playerModel.AddCoinsScore();
+        }
+
+        private void TeleportPlayer(int xOffset, Vector2 teleportPosition)
+        {
+            _playerViewController.Teleport(xOffset, teleportPosition);
         }
 
         public void Dispose()

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Platformer
 {
     [Serializable]
-    public class FlyEnemiesInitModel
+    public class FlyEnemiesProtoModel
     {
         [SerializeField] private List<FlyEnemyInitModel> _flyEnemyInitModels;
 

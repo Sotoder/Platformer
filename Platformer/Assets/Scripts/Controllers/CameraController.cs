@@ -6,7 +6,7 @@ namespace Platformer
     {
         private CameraModel _cameraModel;
 
-        public CameraController(PlayerView playerView, CameraInitModel cameraInitModel)
+        public CameraController(PlayerView playerView, CameraProtoModel cameraInitModel)
         {
             _cameraModel = new CameraModel(cameraInitModel, playerView);
         }
@@ -22,14 +22,14 @@ namespace Platformer
             _cameraModel.CameraTransform.position = newPosition;  
         }
 
-        public void ChangeLevelSettings(int levelID)
+        public void ChangeLevelSettings(Levels level)
         {
             foreach (var levelSettings in _cameraModel.LevelsSettings)
             {
-                if (levelID == levelSettings.LevelID)
+                if (level == levelSettings.Level)
                 {
                     _cameraModel.CurrentLevelSettings = levelSettings;
-                    return;
+                    break;
                 }
             }
         }

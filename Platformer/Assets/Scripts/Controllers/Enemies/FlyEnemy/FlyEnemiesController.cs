@@ -6,7 +6,7 @@ namespace Platformer
     {
         private List<FlyEnemyController> _flyEnemyControllers = new List<FlyEnemyController>();
 
-        public FlyEnemiesController(FlyEnemiesInitModel flyEnemiesInitModel)
+        public FlyEnemiesController(FlyEnemiesProtoModel flyEnemiesInitModel)
         {
             var enemyControllersFactory = new FlyEnemiesControllerFactory();
 

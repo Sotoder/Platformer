@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Platformer
 {
-    public class PlayerAnimationController
+    public class PlayerViewController
     {
         private PlayerView _playerView;
         private SpriteAnimatorController _playerAnimatorController;
 
-        public PlayerAnimationController(PlayerView playerView, SpriteAnimatorController playerAnimatorController)
+        public PlayerViewController(PlayerView playerView, SpriteAnimatorController playerAnimatorController)
         {
             _playerView = playerView;
             _playerAnimatorController = playerAnimatorController;
@@ -24,6 +25,11 @@ namespace Platformer
         {
             _playerAnimatorController.StopAnimation(_playerView.SpriteRenderer);
             _playerAnimatorController.StartAnimation(_playerView.SpriteRenderer, animState, true);
+        }
+
+        public void Teleport(int xOffset, Vector2 teleportPosition)
+        {
+            _playerView.Transform.position = new Vector2(teleportPosition.x + xOffset, teleportPosition.y);
         }
     }
 }

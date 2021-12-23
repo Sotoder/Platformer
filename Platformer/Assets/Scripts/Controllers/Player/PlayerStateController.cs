@@ -5,7 +5,7 @@ namespace Platformer
     public class PlayerStateController
     {
         private PlayerModel _playerModel;
-        private PlayerAnimationController _playerViewController;
+        private PlayerViewController _playerViewController;
         private InputController _inputController;
         private PlayerView _playerView;
 
@@ -14,7 +14,7 @@ namespace Platformer
         private JumpState _jumpState;
         private FallState _fallState;
 
-        public PlayerStateController(PlayerModel playerModel, InputController inputController, PlayerAnimationController playerViewController, PlayerView playerView)
+        public PlayerStateController(PlayerModel playerModel, InputController inputController, PlayerViewController playerViewController, PlayerView playerView)
         {
             _playerModel = playerModel;
             _playerViewController = playerViewController;

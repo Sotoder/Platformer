@@ -20,7 +20,7 @@
         public bool IsJump { get => _isJump; }
         public bool IsFall { get => _isFall; }
 
-        public void OnStateEnter(PlayerAnimationController playerViewController)
+        public void OnStateEnter(PlayerViewController playerViewController)
         {
             playerViewController.ChangeAnimation(AnimState.Run);
         }

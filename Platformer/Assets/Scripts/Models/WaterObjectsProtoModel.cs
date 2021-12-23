@@ -5,12 +5,12 @@ using UnityEngine;
 namespace Platformer
 {
     [Serializable]
-    public class WaterObjectsInitModel
+    public class WaterObjectsProtoModel
     {
         [SerializeField] private SpriteAnimatorConfig _waterSpriteAnimatorConfig;
-        [SerializeField] private List<WaterPoolObject> _waterPoolObjects;
+        [SerializeField] private List<WaterPoolObjectView> _waterPoolObjects;
 
         public SpriteAnimatorConfig WaterSpriteAnimatorConfig { get => _waterSpriteAnimatorConfig; }
-        public List<WaterPoolObject> WaterPoolObjectViews { get => _waterPoolObjects; }
+        public List<WaterPoolObjectView> WaterPoolObjectViews { get => _waterPoolObjects; }
     }
 }

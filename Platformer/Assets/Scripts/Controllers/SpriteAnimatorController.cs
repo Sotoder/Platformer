@@ -87,10 +87,13 @@ namespace Platformer
         {
             foreach (var animation in _activeAnimation)
             {
-                animation.Value.Update(deltaTime);
-                if(animation.Value.Counter < animation.Value.Sprites.Count)
+                if (animation.Key.isVisible)
                 {
-                    animation.Key.sprite = animation.Value.Sprites[(int)animation.Value.Counter];
+                    animation.Value.Update(deltaTime);
+                    if (animation.Value.Counter < animation.Value.Sprites.Count)
+                    {
+                        animation.Key.sprite = animation.Value.Sprites[(int)animation.Value.Counter];
+                    }
                 }
             }
         }

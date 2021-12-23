@@ -7,9 +7,10 @@ namespace Platformer
     public class TriggerController
     {
         public event Action GetCoin = delegate () { };
+        public event Action<int, Vector2> Teleportation = delegate (int offset, Vector2 teleportationPosition) { };
 
         private PlayerView _playerView;
-        private Dictionary<IAnimationController, List<SpriteRenderer>> _animatedObjectsLists = new Dictionary<IAnimationController, List<SpriteRenderer>>();
+        private Dictionary<TriggeredObjectTypes, List<ITriggerObject>> _triggeredObjectsLists = new Dictionary<TriggeredObjectTypes, List<ITriggerObject>>();
 
         public TriggerController(PlayerView playerView)
         {
@@ -19,29 +20,30 @@ namespace Platformer
 
         private void CheckTriggerObject(Collider2D collider)
         {
-            foreach(var objectsList in _animatedObjectsLists)
+            foreach(var objectsList in _triggeredObjectsLists)
             {
                 for(int i = 0; i < objectsList.Value.Count; i++)
                 {
-                    if (collider.gameObject.GetInstanceID() == objectsList.Value[i].gameObject.GetInstanceID())
+                    if (collider.gameObject.GetInstanceID() == objectsList.Value[i].InstanceID)
                     {
-                        if(objectsList.Key.AnimationControllerType == typeof(CoinsAnimationController)) //Происходит ли тут каст?
+                        if(objectsList.Key == TriggeredObjectTypes.Coin)
                         {
                             GetCoin.Invoke();
                         }
-
-                        objectsList.Key.RemoveSpriteRenderer(objectsList.Value[i]);
-                        GameObject.Destroy(objectsList.Value[i]);
-                        objectsList.Value.Remove(objectsList.Value[i]);
-                        return;
+                        else if(objectsList.Key == TriggeredObjectTypes.Teleport)
+                        {
+                            var teleportObject = objectsList.Value[i] as ITriggerTeleportObject;
+                            Teleportation.Invoke(teleportObject.TeleportationOffset, teleportObject.PairObjectPosition);
+                        }
+                        break;
                     }
                 }
             }
         }
 
-        public TriggerController AddAnimatedObjects (IAnimationController controller, List<SpriteRenderer> spriteRenderers)
+        public TriggerController AddTriggerdObjects (TriggeredObjectTypes objectType, List<ITriggerObject> gameObjects)
         {
-            _animatedObjectsLists.Add(controller, spriteRenderers);
+            _triggeredObjectsLists.Add(objectType, gameObjects);
 
             return this;
         }

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Platformer
 {
     [Serializable]
-    public class WaterPoolObject
+    public class WaterPoolObjectView
     {
         [SerializeField] private List<SpriteRenderer> _waterSpriteRenderers;
 

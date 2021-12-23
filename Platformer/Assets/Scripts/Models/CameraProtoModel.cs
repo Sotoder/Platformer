@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Platformer
 {
     [Serializable]
-    public class CameraInitModel
+    public class CameraProtoModel
     {
         [SerializeField] private Transform _cameraTransform;
         [SerializeField] private CameraConfig _cameraConfig;

@@ -4,7 +4,7 @@
     {
         private FlyEnemiesController _flyEnemiesController;
 
-        public EnemiesSubsystemController(FlyEnemiesInitModel flyEnemiesInitModel)
+        public EnemiesSubsystemController(FlyEnemiesProtoModel flyEnemiesInitModel)
         {
             _flyEnemiesController = new FlyEnemiesController(flyEnemiesInitModel);
         }

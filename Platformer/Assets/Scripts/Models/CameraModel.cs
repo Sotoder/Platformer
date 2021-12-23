@@ -15,7 +15,7 @@ namespace Platformer
         public PlayerView PlayerView { get => _playerView; }
         public List<CameraLevelSettings> LevelsSettings { get => _levelsSettings; }
 
-        public CameraModel(CameraInitModel cameraInitModel, PlayerView playerView)
+        public CameraModel(CameraProtoModel cameraInitModel, PlayerView playerView)
         {
             _levelsSettings = cameraInitModel.CameraConfig.CameraLevelSettings;
             _cameraTransform = cameraInitModel.CameraTransform;

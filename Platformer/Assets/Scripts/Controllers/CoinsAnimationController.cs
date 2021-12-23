@@ -4,34 +4,27 @@ using UnityEngine;
 
 namespace Platformer
 {
-    public class CoinsAnimationController: IUpdateble, IAnimationController
-    {
-        public Type AnimationControllerType => this.GetType();
-        
+    public class CoinsAnimationController
+    {        
         private SpriteAnimatorController _coinAnimatorController;
-        private List<SpriteRenderer> _coinsRenderer = new List<SpriteRenderer>();
+        private List<SpriteRenderer> _coinsRenderers = new List<SpriteRenderer>();
 
         private const AnimState COUN_STATE = AnimState.Idle;
 
-        public CoinsAnimationController(CoinsInitModel coinsInitModel)
+        public CoinsAnimationController(SpriteAnimatorConfig spriteAnimatorConfig, List<SpriteRenderer> coinsSpriteRenderers)
         {
-            _coinAnimatorController = new SpriteAnimatorController(coinsInitModel.SpriteAnimatorConfig);
-            _coinsRenderer = coinsInitModel.CoinsRenderers;
+            _coinAnimatorController = new SpriteAnimatorController(spriteAnimatorConfig);
+            _coinsRenderers = coinsSpriteRenderers;
 
-            for (int i = 0; i < _coinsRenderer.Count; i++)
+            for (int i = 0; i < _coinsRenderers.Count; i++)
             {
-                _coinAnimatorController.StartAnimation(_coinsRenderer[i], COUN_STATE, true);
+                _coinAnimatorController.StartAnimation(_coinsRenderers[i], COUN_STATE, true);
             }
         }
 
         public void Update(float deltaTime)
         {
             _coinAnimatorController.Update(deltaTime);
-        }
-
-        public void RemoveSpriteRenderer(SpriteRenderer spriteRenderer)
-        {
-            _coinAnimatorController.StopAnimation(spriteRenderer);
         }
     }
 }

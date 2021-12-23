@@ -6,16 +6,18 @@ namespace Platformer
     [Serializable]
     public class GameInitModel
     {
-        [SerializeField] private PlayerInitModel _playerInitModel;
-        [SerializeField] private FlyEnemiesInitModel _flyEnemiesInitModel;
-        [SerializeField] private WaterObjectsInitModel _waterInitModel;
-        [SerializeField] private CameraInitModel _cameraInitModel;
-        [SerializeField] private CoinsInitModel _coinsInitModel;
+        [SerializeField] private PlayerProtoModel _playerProtoModel;
+        [SerializeField] private FlyEnemiesProtoModel _flyEnemiesProtoModel;
+        [SerializeField] private WaterObjectsProtoModel _waterProtoModel;
+        [SerializeField] private CameraProtoModel _cameraProtoModel;
+        [SerializeField] private CoinsProtoModel _coinsProtoModel;
+        [SerializeField] private TeleportsProtoModel _teleportsProtoModel;
 
-        public PlayerInitModel PlayerInitModel { get => _playerInitModel; }
-        public FlyEnemiesInitModel FlyEnemiesInitModel { get => _flyEnemiesInitModel; }
-        public CameraInitModel CameraInitModel { get => _cameraInitModel; }
-        public WaterObjectsInitModel WaterInitModel { get => _waterInitModel; }
-        public CoinsInitModel CoinsInitModel { get => _coinsInitModel; }
+        public PlayerProtoModel PlayerProtoModel { get => _playerProtoModel; }
+        public FlyEnemiesProtoModel FlyEnemiesProtoModel { get => _flyEnemiesProtoModel; }
+        public CameraProtoModel CameraProtoModel { get => _cameraProtoModel; }
+        public WaterObjectsProtoModel WaterProtoModel { get => _waterProtoModel; }
+        public CoinsProtoModel CoinsProtoModel { get => _coinsProtoModel; }
+        public TeleportsProtoModel TeleportsProtoModel { get => _teleportsProtoModel; }
     }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CameraConfig
   m_EditorClassIdentifier: 
   _cameraLevelSettings:
-  - _levelID: 1
+  - level: 1
     _maxLeftOffset: 0
     _maxRightOffset: 37

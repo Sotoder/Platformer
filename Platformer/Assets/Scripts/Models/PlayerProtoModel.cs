@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Platformer
 {
     [Serializable]
-    public class PlayerInitModel
+    public class PlayerProtoModel
     {
         [SerializeField] private SpriteAnimatorConfig _playerAnimatorConfig;
         [SerializeField] private PlayerView _playerView;
