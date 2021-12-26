@@ -8,6 +8,7 @@ namespace Platformer
     {
         public event Action GetCoin = delegate () { };
         public event Action<int, Vector2> Teleportation = delegate (int offset, Vector2 teleportationPosition) { };
+        public event Action<Levels> LoadNextLevel = delegate (Levels nextLevel) { };
 
         private PlayerView _playerView;
         private Dictionary<TriggerObjectTypes, List<ITriggerObject>> _triggeredObjectsLists = new Dictionary<TriggerObjectTypes, List<ITriggerObject>>();
@@ -35,6 +36,13 @@ namespace Platformer
                             var teleportObject = objectsList.Value[i] as ITriggerTeleportObject;
                             Teleportation.Invoke(teleportObject.TeleportationOffset, teleportObject.PairObjectPosition);
                         }
+
+                        else if (objectsList.Key == TriggerObjectTypes.EndLevel)
+                        {
+                            var endLevelObject = objectsList.Value[i] as ITriggerEndLevelPortalObject;
+                            Teleportation.Invoke(0, endLevelObject.NextLevelStartPosition);
+                            LoadNextLevel.Invoke(endLevelObject.NextLevelType);
+                        }
                         break;
                     }
                 }
@@ -44,6 +52,13 @@ namespace Platformer
         public TriggerController AddTriggerdObjects (TriggerObjectTypes objectType, List<ITriggerObject> gameObjects)
         {
             _triggeredObjectsLists.Add(objectType, gameObjects);
+
+            return this;
+        }
+
+        public TriggerController AddTriggerdObjects(TriggerObjectTypes objectType, ITriggerObject gameObject)
+        {
+            _triggeredObjectsLists.Add(objectType, new List<ITriggerObject> {gameObject});
 
             return this;
         }

@@ -6,6 +6,7 @@ namespace Platformer
     [Serializable]
     public class GameInitModel
     {
+        [SerializeField] private EndLevelPortalsProtoModel _endLevelPortalsProtoModel;
         [SerializeField] private PlayerProtoModel _playerProtoModel;
         [SerializeField] private FlyEnemiesProtoModel _flyEnemiesProtoModel;
         [SerializeField] private WaterObjectsProtoModel _waterProtoModel;
@@ -13,6 +14,7 @@ namespace Platformer
         [SerializeField] private CoinsProtoModel _coinsProtoModel;
         [SerializeField] private TeleportsProtoModel _teleportsProtoModel;
 
+        public EndLevelPortalsProtoModel EndLevelPortalsProtoModel { get => _endLevelPortalsProtoModel; }
         public PlayerProtoModel PlayerProtoModel { get => _playerProtoModel; }
         public FlyEnemiesProtoModel FlyEnemiesProtoModel { get => _flyEnemiesProtoModel; }
         public CameraProtoModel CameraProtoModel { get => _cameraProtoModel; }

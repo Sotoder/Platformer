@@ -17,16 +17,16 @@ namespace Platformer
                                         _cameraModel.CurrentLevelSettings.MaxLeftOffset, 
                                         _cameraModel.CurrentLevelSettings.MaxRightOffset);
 
-            var newPosition = new Vector3(xPosition, _cameraModel.CameraTransform.position.y, _cameraModel.CameraTransform.position.z);
+            var newPosition = new Vector3(xPosition, _cameraModel.CurrentLevelSettings.YPosition, _cameraModel.CameraTransform.position.z);
 
             _cameraModel.CameraTransform.position = newPosition;  
         }
 
-        public void ChangeLevelSettings(Levels level)
+        public void ChangeLevelSettings(Levels levelType)
         {
             foreach (var levelSettings in _cameraModel.LevelsSettings)
             {
-                if (level == levelSettings.Level)
+                if (levelType == levelSettings.Level)
                 {
                     _cameraModel.CurrentLevelSettings = levelSettings;
                     break;

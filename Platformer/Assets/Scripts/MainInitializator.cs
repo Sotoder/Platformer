@@ -7,6 +7,9 @@ namespace Platformer
 
         public MainInitializator(MainUpdateController updateController, GameInitModel gameInitModel)
         {
+            var timerController = new TimerController();
+            var inputController = new InputController();
+
             var waterPoolsAnimationController = new WaterPoolsAnimationController(gameInitModel.WaterProtoModel);
 
             var coinsSubsystemController = new CoinsSubsystemController(gameInitModel.CoinsProtoModel, 
@@ -14,16 +17,21 @@ namespace Platformer
                                                                         gameInitModel.PlayerProtoModel.PlayerView);
 
             var teleportController = new TeleportsController(gameInitModel.TeleportsProtoModel);
+            var endLevelPortalsController = new EndLevelPortalsController(gameInitModel.EndLevelPortalsProtoModel);
 
             var triggerController = new TriggerController(gameInitModel.PlayerProtoModel.PlayerView)
                                                  .AddTriggerdObjects(TriggerObjectTypes.Coin, coinsSubsystemController.TriggerObjects)
-                                                 .AddTriggerdObjects(TriggerObjectTypes.Teleport, teleportController.TriggerTeleportObjects);
+                                                 .AddTriggerdObjects(TriggerObjectTypes.Teleport, teleportController.TriggerTeleportObjects)
+                                                 .AddTriggerdObjects(TriggerObjectTypes.EndLevel, endLevelPortalsController.EndLevelPortal);
             
             var cameraController = new CameraController(gameInitModel.PlayerProtoModel.PlayerView, gameInitModel.CameraProtoModel);
-            var inputController = new InputController();
             var playerController = new PlayerController(gameInitModel.PlayerProtoModel, inputController, triggerController);
             var enemiesSubsystemController = new EnemiesSubsystemController(gameInitModel.FlyEnemiesProtoModel);
 
+            var levelManager = new LevelManager(waterPoolsAnimationController, coinsSubsystemController, 
+                                                teleportController, triggerController, enemiesSubsystemController, cameraController);
+
+            updateController.Add(timerController);
             updateController.Add(inputController);
             updateController.Add(playerController);
             updateController.Add(enemiesSubsystemController);
@@ -31,6 +39,7 @@ namespace Platformer
             updateController.Add(waterPoolsAnimationController);
             updateController.Add(coinsSubsystemController);
             updateController.Add(teleportController);
+            updateController.Add(endLevelPortalsController);
         }
     }
 }

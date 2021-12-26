@@ -31,5 +31,22 @@ namespace Platformer
         {
             _playerView.Transform.position = new Vector2(teleportPosition.x + xOffset, teleportPosition.y);
         }
+
+        public void GoDown()
+        {
+            if (Physics2D.OverlapCircle(_playerView.GroundDetector.transform.position, _playerView.GroundDetectorRadius, 1<<7))
+            {
+                _playerView.Collider2D.enabled = false;
+                var timer = new Timer(0.25f);
+                TimersList.AddTimer(timer);
+                timer.TimerIsOver += EnableCollider;
+            }
+        }
+
+        private void EnableCollider(Timer timer)
+        {
+            _playerView.Collider2D.enabled = true;
+            timer.TimerIsOver -= EnableCollider;
+        }
     }
 }

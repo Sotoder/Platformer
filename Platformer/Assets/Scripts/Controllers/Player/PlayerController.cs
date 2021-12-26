@@ -36,10 +36,16 @@ namespace Platformer
             _inputController.MoveButtonUp += Stop;
             _inputController.SprintButtonDown += SprintOn;
             _inputController.SprintButtonUp += SprintOff;
+            _inputController.ButtonDownPressed += Down;
 
             _triggerController = triggerController;
             _triggerController.GetCoin += AddScore;
             _triggerController.Teleportation += TeleportPlayer;
+        }
+
+        private void Down()
+        {
+            _playerViewController.GoDown();
         }
 
         public void FixedUpdate(float fixedDeltaTime)
