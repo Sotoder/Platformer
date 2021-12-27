@@ -2,10 +2,12 @@
 
 namespace Platformer
 {
-    internal class FlyEnemyModel
+    public class FlyEnemyModel: IEnemyModel
     {
-        public float Speed;
-        public Vector2 CurentPosition;
+        public float Speed { get; set; }
+        public Vector2 CurentPosition { get; set; }
+        public IEnemyState CurentState { get; set; }
+        public Transform TargetTransform { get; set; }
 
         private float _maxOffset;
         private Vector2 _startPosition;

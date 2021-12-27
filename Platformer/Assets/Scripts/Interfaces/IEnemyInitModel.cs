@@ -7,5 +7,6 @@ namespace Platformer
         public GameObject SpawnPoint { get; }
         public GameObject Prefab { get; }
         public FlyEnemyModelConfig FlyEnemyConfig { get; }
+        public AgroZone AgroZone { get; }
     }
 }
