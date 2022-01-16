@@ -28,8 +28,10 @@ namespace Platformer
             var playerController = new PlayerController(gameInitModel.PlayerProtoModel, inputController, triggerController);
             var enemiesSubsystemController = new EnemiesSubsystemController(gameInitModel.FlyEnemiesProtoModel);
 
-            var levelManager = new LevelManager(waterPoolsAnimationController, coinsSubsystemController, 
-                                                teleportController, triggerController, enemiesSubsystemController, cameraController);
+            new LevelManager(waterPoolsAnimationController, coinsSubsystemController, 
+                             teleportController, triggerController, enemiesSubsystemController, cameraController);
+
+            new GeneratorLevelController(gameInitModel.GeneratorLevelProtoModel);
 
             updateController.Add(timerController);
             updateController.Add(inputController);

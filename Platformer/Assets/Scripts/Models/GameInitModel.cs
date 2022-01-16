@@ -13,6 +13,7 @@ namespace Platformer
         [SerializeField] private CameraProtoModel _cameraProtoModel;
         [SerializeField] private CoinsProtoModel _coinsProtoModel;
         [SerializeField] private TeleportsProtoModel _teleportsProtoModel;
+        [SerializeField] private GeneratorLevelProtoModel _generatorLevelProtoModel;
 
         public EndLevelPortalsProtoModel EndLevelPortalsProtoModel { get => _endLevelPortalsProtoModel; }
         public PlayerProtoModel PlayerProtoModel { get => _playerProtoModel; }
@@ -21,5 +22,6 @@ namespace Platformer
         public WaterObjectsProtoModel WaterProtoModel { get => _waterProtoModel; }
         public CoinsProtoModel CoinsProtoModel { get => _coinsProtoModel; }
         public TeleportsProtoModel TeleportsProtoModel { get => _teleportsProtoModel; }
+        public GeneratorLevelProtoModel GeneratorLevelProtoModel { get => _generatorLevelProtoModel; }
     }
 }
