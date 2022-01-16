@@ -8,7 +8,8 @@ namespace Platformer
     public class GeneratorLevelProtoModel
     {
         [SerializeField] private Tilemap _tilemap;
-        [SerializeField] private Tile _groundtile;
+        [SerializeField] private Tile _groundTile;
+        [SerializeField] private Tile _grassTile;
         [SerializeField] private int _heightMap;
         [SerializeField] private int _wightMap;
         [SerializeField] private bool _isHaveBorders;
@@ -18,7 +19,8 @@ namespace Platformer
         [SerializeField] private int _yOffset;
 
         public Tilemap Tilemap { get => _tilemap; }
-        public Tile Groundtile { get => _groundtile; }
+        public Tile GroundTile { get => _groundTile; }
+        public Tile GrassTile { get => _grassTile; }
         public int HeightMap { get => _heightMap; }
         public int WightMap { get => _wightMap; }
         public bool IsHaveBorders { get => _isHaveBorders; }

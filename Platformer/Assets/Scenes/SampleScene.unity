@@ -4796,11 +4796,12 @@ MonoBehaviour:
       _teleportOffset: 1
     _generatorLevelProtoModel:
       _tilemap: {fileID: 793687588}
-      _groundtile: {fileID: 11400000, guid: ee2138f640f5a414fa21861f7746bebc, type: 2}
+      _groundTile: {fileID: 11400000, guid: ee2138f640f5a414fa21861f7746bebc, type: 2}
+      _grassTile: {fileID: 11400000, guid: 3cd16530b37282c4c8cf0833d5eda5ed, type: 2}
       _heightMap: 10
       _wightMap: 10
       _isHaveBorders: 1
-      _fillPercent: 30
+      _fillPercent: 22
       _factorSmooth: 1
       _xOffset: 52
       _yOffset: 0
@@ -7786,18 +7787,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -6856767496382504229, guid: 3fdbaf8ddc19c714e9c1c7d1a62105e9, type: 3}
-      propertyPath: height
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -6856767496382504229, guid: 3fdbaf8ddc19c714e9c1c7d1a62105e9, type: 3}
-      propertyPath: orientation
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -6856767496382504229, guid: 3fdbaf8ddc19c714e9c1c7d1a62105e9, type: 3}
-      propertyPath: constrainInsideGraph
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: -4056885071324392844, guid: 3fdbaf8ddc19c714e9c1c7d1a62105e9, type: 3}
       propertyPath: target
       value: 
@@ -7844,10 +7833,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8209169521191092408, guid: 3fdbaf8ddc19c714e9c1c7d1a62105e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8209169521191092412, guid: 3fdbaf8ddc19c714e9c1c7d1a62105e9, type: 3}
-      propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8209169521191092413, guid: 3fdbaf8ddc19c714e9c1c7d1a62105e9, type: 3}

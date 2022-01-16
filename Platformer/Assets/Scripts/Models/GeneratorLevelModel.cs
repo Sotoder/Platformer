@@ -6,6 +6,7 @@ namespace Platformer
     {
         private Tilemap _tilemap;
         private Tile _groundTile;
+        private Tile _grassTile;
         private int _heightMap;
         private int _wightMap;
         private bool _isHaveBorders;
@@ -25,11 +26,13 @@ namespace Platformer
         public int FactorSmooth { get => _factorSmooth; }
         public int XOffset { get => _xOffset; }
         public int YOffset { get => _yOffset; }
+        public Tile GrassTile { get => _grassTile; }
 
         public GeneratorLevelModel(GeneratorLevelProtoModel generatorLevelProtoModel)
         {
             _tilemap = generatorLevelProtoModel.Tilemap;
-            _groundTile = generatorLevelProtoModel.Groundtile;
+            _groundTile = generatorLevelProtoModel.GroundTile;
+            _grassTile = generatorLevelProtoModel.GrassTile;
             _heightMap = generatorLevelProtoModel.HeightMap;
             _wightMap = generatorLevelProtoModel.WightMap;
             _isHaveBorders = generatorLevelProtoModel.IsHaveBorders;

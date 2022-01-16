@@ -27,7 +27,14 @@ namespace Platformer
                                                              -_generatorLevelModel.HeightMap / 2 + y + _generatorLevelModel.YOffset, 0);
                     if (_generatorLevelModel.Map[x, y] == 1)
                     {
-                        _generatorLevelModel.Tilemap.SetTile(tilePosition, _generatorLevelModel.GroundTile);
+                        if (y != _generatorLevelModel.HeightMap - 1 && _generatorLevelModel.Map[x, y + 1] == 0)
+                        {
+                            _generatorLevelModel.Tilemap.SetTile(tilePosition, _generatorLevelModel.GrassTile);
+                        }
+                        else
+                        {
+                            _generatorLevelModel.Tilemap.SetTile(tilePosition, _generatorLevelModel.GroundTile);
+                        }
                     }
                 }
             }
