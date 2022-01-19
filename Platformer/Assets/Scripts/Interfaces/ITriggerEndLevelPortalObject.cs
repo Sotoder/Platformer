@@ -6,5 +6,6 @@ namespace Platformer
     {
         public Vector2 NextLevelStartPosition { get; }
         public Levels NextLevelType { get; }
+        public bool IsActive { get; set; }
     }
 }

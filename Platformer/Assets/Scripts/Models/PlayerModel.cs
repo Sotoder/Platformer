@@ -1,7 +1,7 @@
 ﻿
 namespace Platformer
 {
-    public class PlayerModel
+    public class PlayerModel: IPlayerDataForQuests
     {
         public readonly float Speed;
         public readonly float SprintModifier;

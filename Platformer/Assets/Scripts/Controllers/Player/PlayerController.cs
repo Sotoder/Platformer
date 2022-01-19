@@ -17,6 +17,7 @@ namespace Platformer
         private TriggerController _triggerController;
         private MoveImplementation _moveImplementation;
 
+        public IPlayerDataForQuests PlayerDataForQuests { get => _playerModel; }
 
         public PlayerController(PlayerProtoModel playerInitModel, InputController inputController, TriggerController triggerController)
         {

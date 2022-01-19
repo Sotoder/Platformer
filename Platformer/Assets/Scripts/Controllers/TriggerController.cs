@@ -40,8 +40,11 @@ namespace Platformer
                         else if (objectsList.Key == TriggerObjectTypes.EndLevel)
                         {
                             var endLevelObject = objectsList.Value[i] as ITriggerEndLevelPortalObject;
-                            Teleportation.Invoke(0, endLevelObject.NextLevelStartPosition);
-                            LoadNextLevel.Invoke(endLevelObject.NextLevelType);
+                            if (endLevelObject.IsActive)
+                            {
+                                Teleportation.Invoke(0, endLevelObject.NextLevelStartPosition);
+                                LoadNextLevel.Invoke(endLevelObject.NextLevelType);
+                            }
                         }
                         break;
                     }

@@ -4725,6 +4725,7 @@ MonoBehaviour:
       endLevelPortalViews:
       - _endLevelPortal: {fileID: 72083465}
         _endLevelPortalSpriteRenderer: {fileID: 72083468}
+        _curentLevelType: 1
         _nextLevelType: 2
         _nextLevelStartPosition: {fileID: 556158718}
     _playerProtoModel:
@@ -4805,6 +4806,7 @@ MonoBehaviour:
       _factorSmooth: 1
       _xOffset: 52
       _yOffset: 0
+    _questsConfig: {fileID: 11400000, guid: 8e931ffca71a4364fa631b9844c95fcb, type: 2}
 --- !u!4 &610333419
 Transform:
   m_ObjectHideFlags: 0

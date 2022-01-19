@@ -22,7 +22,7 @@ namespace Platformer
             var triggerController = new TriggerController(gameInitModel.PlayerProtoModel.PlayerView)
                                                  .AddTriggerdObjects(TriggerObjectTypes.Coin, coinsSubsystemController.TriggerObjects)
                                                  .AddTriggerdObjects(TriggerObjectTypes.Teleport, teleportController.TriggerTeleportObjects)
-                                                 .AddTriggerdObjects(TriggerObjectTypes.EndLevel, endLevelPortalsController.EndLevelPortal);
+                                                 .AddTriggerdObjects(TriggerObjectTypes.EndLevel, endLevelPortalsController.CurentEndLevelPortal);
             
             var cameraController = new CameraController(gameInitModel.PlayerProtoModel.PlayerView, gameInitModel.CameraProtoModel);
             var playerController = new PlayerController(gameInitModel.PlayerProtoModel, inputController, triggerController);
@@ -33,6 +33,9 @@ namespace Platformer
 
             new GeneratorLevelController(gameInitModel.GeneratorLevelProtoModel);
 
+            var questsController = new QuestsController(gameInitModel.QuestsConfig, playerController.PlayerDataForQuests);
+            endLevelPortalsController.SubscribeOnQuests(questsController);
+
             updateController.Add(timerController);
             updateController.Add(inputController);
             updateController.Add(playerController);
@@ -42,6 +45,7 @@ namespace Platformer
             updateController.Add(coinsSubsystemController);
             updateController.Add(teleportController);
             updateController.Add(endLevelPortalsController);
+            updateController.Add(questsController);
         }
     }
 }
