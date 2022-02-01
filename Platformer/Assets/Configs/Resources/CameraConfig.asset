@@ -15,8 +15,8 @@ MonoBehaviour:
   _cameraLevelSettings:
   - level: 1
     _yPosition: 0
-    _maxLeftOffset: -0.28
-    _maxRightOffset: 37
+    _maxLeftOffset: -1.1
+    _maxRightOffset: 38
   - level: 2
     _yPosition: 15
     _maxLeftOffset: -0.28

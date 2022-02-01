@@ -2141,7 +2141,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0009773, y: 1.0004885}
+    oldSize: {x: 1.000977, y: 1.000977}
     newSize: {x: 1.0009773, y: 1.0004885}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4159,7 +4159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.28, y: 0, z: -10}
+  m_LocalPosition: {x: 38.04, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4537,7 +4537,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556158717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.5, y: 13.5, z: 0}
+  m_LocalPosition: {x: -8.63, y: 13.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 71222213}
@@ -6365,7 +6365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758941223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.5, y: -1.39, z: 0}
+  m_LocalPosition: {x: -8.32, y: -1.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 413515390}
@@ -7841,6 +7841,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyEnemyAStar
       objectReference: {fileID: 0}
+    - target: {fileID: 8209169521191092415, guid: 3fdbaf8ddc19c714e9c1c7d1a62105e9, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: b873c1b4e87aaf14da6be30bec3ab71a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdbaf8ddc19c714e9c1c7d1a62105e9, type: 3}
 --- !u!1 &1034313020
